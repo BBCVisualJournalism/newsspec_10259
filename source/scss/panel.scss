@@ -1,0 +1,91 @@
+.ns_facewall__panel {
+    background-color: $darkBackground;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 16px 8px;
+
+    .ns_facewall__portrait-wrapper {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ns_facewall__portrait {
+        border-bottom: 3px solid #404040;
+        display: block;
+        margin: 0;
+        padding: 0 0 16px 0;
+        list-style: none;
+    }
+
+    span {
+        display: block;
+    }
+
+    .ns_facewall__potrait-img {
+        background: url(/news/special/2015/newsspec_10259/content/english/img/sprite_145.jpg) no-repeat;
+        display: block;
+        height: 145px;
+        margin-bottom: 32px;
+        width: 145px;
+
+    }
+
+    .ns_facewall__name {
+        font-size: 22px;
+        line-height: 22px;
+        font-weight: normal;
+        padding: 20px 0;
+    }
+    .ns_facewall__alias {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .portrait__atrribute {
+        margin-top: 12px;
+    }
+
+    .ns_facewall__storylink {
+        color: #ffffff;
+    }
+
+    .ns_facewall__potrait-img--silhouette {
+        background: url(/news/special/2015/newsspec_10259/content/english/img/silhouette_145.gif) no-repeat;
+    }
+
+    .ns_facewall__potrait-img--1 {
+        background-position: 0 0;
+    }
+
+    @for $i from 3 to $totalProfiles {
+        .ns_facewall__potrait-img--#{$i - 1} {
+            background-position: 0 -148px * ($i - 2);
+        }
+    }
+}
+
+@include respondMinMax (500px, false ) {
+    .ns_facewall__panel {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 0 16px;
+
+        .ns_facewall__portrait {
+            border-bottom: none;
+            display: none;
+        }
+        .ns_facewall__potrait-img {
+            margin-bottom: 28px;
+        }
+        .ns_facewall__portrait--active {
+            display: block;
+        }
+        /*.ns_facewall__name {
+            margin: 0;
+        }*/
+        .ns_facewall__storylink {
+            color: #404040;
+        }
+    }
+    
+}

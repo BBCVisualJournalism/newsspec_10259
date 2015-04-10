@@ -1,0 +1,57 @@
+@import "news_special/defaults";
+@import "app";
+
+$anchor-active: #f00;
+$bbcTeal: #007f7f;
+$borderLineColor: #dbdadb;
+$darkBackground: #1e1e1e;
+$blackFont: #000000;
+$totalProfiles: 110;
+$screen-width-offset: 16px;
+$graph-color-overall: #47828e;
+$graph-color-male: #522751;
+$graph-color-female: #cc0000;
+$graph-multiplier-group-1: 1.7%;
+$graph-multiplier-group-3: 1.48%;
+$graph-multiplier-group-4: 1.76%;
+
+
+.main {
+    
+    color: #404040;
+    font-size: 1.000em;
+    line-height: 1.500em;
+
+    a {
+        font-family: Arial, Helmet, Freesans, sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        outline: none;
+    }
+
+    a:visited {
+        outline: none;
+    }
+
+    a:focus {
+        outline: none;
+    }
+
+    h2 {
+        font-size: 1.125em;
+        margin: 0;
+    }
+
+    p {
+        margin: 16px 0;
+    }
+
+}
+
+@import "layout";
+@import "panel";
+@import "filters";
+@import "facewall";
+
+
+

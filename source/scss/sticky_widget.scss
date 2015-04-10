@@ -1,0 +1,26 @@
+.onbbcdomain {
+    .ns_sticky_widget {
+        padding: 0;
+    }
+}
+
+
+.cta__back_to_facewall {
+    background-color: #007f7f;
+    color: white;
+    display: none;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+}
+
+.cta__back_to_facewall--active {
+    display: block;
+}
+
+@include respondMinMax (500px, false) {
+    .cta__back_to_facewall--active {
+        display: none;
+    }
+}

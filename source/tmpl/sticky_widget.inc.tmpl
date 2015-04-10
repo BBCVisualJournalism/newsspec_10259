@@ -1,0 +1,39 @@
+
+<style>
+    .ns_facewall__sticky_widget {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .ns_facewall__sticky_widget--sticky {
+        display: block;
+    }
+
+    .cta__back_to_facewall {
+        background-color: #007f7f;
+        color: white;
+        display: block;
+        font-size: 16px;
+        padding: 12px 0;
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    @media screen and (min-width: 500px) {
+        .ns_facewall__sticky_widget--sticky {
+            display: none;
+        }
+    }
+</style>
+
+<div id="ns_facewall__sticky_widget" class="ns_facewall__sticky_widget">
+    <a class="cta__back_to_facewall" href="#">Return to facewall</a>
+</div>
+
+<script type="text/javascript">
+    document.body.className += ' full-width-mode';
+</script>

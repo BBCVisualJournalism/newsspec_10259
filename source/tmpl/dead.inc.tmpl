@@ -1,0 +1,17 @@
+<%
+    iframeUid = "responsive-iframe-" + Math.floor(Math.random() * 100000000);
+%>
+<a href="#" tabindex="0" id="ns_facewall__dead--anchor"></a>
+<div id="ns_facewall__dead" class="ns_facewall__framewrapper" tabindex="0">
+    <a href="<%= path %>/<%= vocab_dir %>/dead.html?v=<%= version %>" id="<%= iframeUid %>" data-static-iframe-height="600">iFrame</a>
+</div>
+<%
+if (!scaffoldLite) {
+%>
+    <style>
+    <%= include("../scss/news_special/loading.css") %>
+    </style>
+<%
+}
+%>
+<script type="text/javascript"><%= include(debug === 'true' ? "../js/lib/news_special/iframemanager__host.js" : "../../tmp/iframemanager__host.js", {iframeUid: iframeUid, scaffoldLite: scaffoldLite}) %></script>

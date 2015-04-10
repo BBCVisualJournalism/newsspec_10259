@@ -1,0 +1,223 @@
+.ns_facewall {
+    border-bottom: 3px solid $borderLineColor;
+    border-top: 3px solid $borderLineColor;
+    margin: 16px 0;
+    padding: 8px 0;
+}
+.ns_facewall__intro {
+    color: $blackFont;
+    display: block;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.ns_intro {
+    display: inline-block;
+}
+
+.ns_intro__text {
+    width: 78%;
+}
+
+.ns_intro__count {
+    color: $blackFont;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.ns_filter__cta {
+    background: url(/news/special/2015/newsspec_10259/content/english/img/hand_icon.png) no-repeat;
+    background-position: 0 12px;
+    color: #404040;
+    font-size: 16px;
+    padding: 10px 0 10px 20px;
+}
+
+.ns_facewall__indicator {
+    border-bottom: 1px solid $borderLineColor;
+    margin: 0 0 6px 0;
+    padding: 0 0 15px 0;
+}
+
+.ns__count_item {
+    background-color: #e3e3e3;
+    display: inline-block;
+    height: 16px;
+    margin-right: 1px;
+    width: 16px;
+}
+.ns__count_item--active {
+    background-color: $bbcTeal;
+}
+
+.ns_facewall__item {
+    display: none;
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 0;
+    position: relative;
+    opacity: 0.1;
+    transition: opacity 300ms;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    width: 70px;
+    height: 70px;
+
+}
+
+.ns_facewall__item--filtered {
+    display: block;
+    opacity: 1;
+    transition: opacity 300ms;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.ns_facewall__item--hover {
+    opacity: 1;
+    transition: opacity 300ms;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.ns_facewall__thumb {
+    background: url(/news/special/2015/newsspec_10259/content/english/img/sprite_70.jpg?v1) no-repeat;
+    display: block;
+    height: 100%;
+    text-indent: -10000px;
+}
+
+.ns_facewall__tooltip {
+    display: none;
+    position: absolute;
+    top: 75px;
+    width: 145px;
+    z-index: 99;
+
+    background-color: $darkBackground;
+    color: white;
+    opacity: 0.9;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+
+    .ns_facewall__tooltipname {
+        display: inline-block;
+        padding: 8px;
+    }
+}
+
+.ns_facewall__tooltip--active {
+    display: none;
+}
+
+.ns_facewall__tooltip--left {
+    left: 0;
+}
+
+.ns_facewall__tooltip--right {
+    right: 0;
+}
+
+.ns_mob_toggle--hide {
+    display: none;
+}
+
+.ns_facewall__thumb--silhouette {
+    background: url(/news/special/2015/newsspec_10259/content/english/img/silhouette_70.gif) no-repeat;
+}
+
+.ns_facewall__thumb--1 {
+    background-position: 0 0;
+}
+
+@for $i from 3 to $totalProfiles {
+    .ns_facewall__thumb--#{$i - 1} {
+        background-position: 0 -73px * ($i - 2);
+    }
+}
+
+
+@include respondMinMax (500px, 799px) {
+    .ns_intro__text {
+        width: auto;
+    }
+    .ns_facewall__indicator {
+        margin-bottom: 6px;
+        padding-bottom: 18px;
+    }
+    .ns_facewall__item {
+        display: block;
+    }
+
+    .ns_facewall__tooltip--active {
+        display: block;
+    }
+
+    .ns_facewall__tooltip--left {
+        left: 0;
+    }
+
+    .ns_facewall__tooltip--right {
+        right: 0;
+    }
+
+    .ns_mob_toggle--hide {
+        display: block;
+    }
+
+}
+
+@include respondMinMax (800px, false ) {
+    .ns_intro__text {
+        width: auto;
+    }
+    .ns_facewall__indicator {
+        margin-bottom: 6px;
+        padding-bottom: 18px;
+    }
+    .ns_facewall__item {
+        display: block;
+        margin-right: 7px;
+        margin-bottom: 7px;
+        padding: 0;
+        width: 100px;
+        height: 100px;
+    }
+    .ns_facewall__tooltip {
+        top: 107px;
+        width: 207px;
+    }
+
+    .ns_facewall__tooltip--active {
+        display: block;
+    }
+
+    .ns_facewall__tooltip--left {
+        left: 0;
+    }
+
+    .ns_facewall__tooltip--right {
+        right: 0;
+    }
+
+    .ns_facewall__thumb {
+        background: url(/news/special/2015/newsspec_10259/content/english/img/sprite_100.jpg?v1) no-repeat;
+    }
+
+    .ns_facewall__thumb--silhouette {
+        background: url(/news/special/2015/newsspec_10259/content/english/img/silhouette_100.gif?v1) no-repeat;
+    }
+
+    .ns_facewall__thumb--1 {
+        background-position: 0 0;
+    }
+
+    .ns_mob_toggle--hide {
+        display: block;
+    }
+
+    @for $i from 3 to $totalProfiles {
+        .ns_facewall__thumb--#{$i - 1} {
+            background-position: 0 -103px * ($i - 2);
+        }
+    }
+
+}

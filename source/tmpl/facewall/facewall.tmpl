@@ -1,0 +1,72 @@
+
+<div class="ns_facewall" data="ns_facewall__<%= jihadiType %>">
+	<%
+		if (jihadiType === 'alive') {
+			introText = 'Those believed to be in Syria or Iraq ';
+		} else if (jihadiType === 'convicted') {
+			introText = 'Those convicted for offences relating to Syria or Iraq ';
+		} else if (jihadiType === 'dead') {
+			introText = 'Jihadists believed to have died fighting in Syria or Iraq ';
+		}
+	%>
+
+	<div class="ns_facewall__intro ns_mob_toggle">
+		<span class="ns_intro ns_intro__text"><%= introText %></span>
+		<span class="ns_intro ns_intro__count">40</span>
+	</div>
+	<div class="ns_filter__cta ns_mob_toggle">Select a filter</div>
+
+	<div class="ns_facewall__filters ns_mob_toggle ">
+		<% if (jihadiType !== 'alive') { %>
+		<a class="ns_filter__toggle ns_filter__toggle--active" href="age">By age</a>
+		<% } %>
+		<% if (jihadiType === 'dead') { %>
+		<a class="ns_filter__toggle" href="group">By group</a>
+		<% } else if (jihadiType === 'convicted') { %>
+		<a class="ns_filter__toggle" href="offence">By offence</a>
+		<% } else if (jihadiType === 'alive') { %>
+		<a class="ns_filter__toggle" href="gender">By gender</a>
+		<a class="ns_filter__toggle" href="hometown">By home town</a>
+		<% } %>
+
+		<form class="ns_filter__controls">
+			<% if (jihadiType !== 'alive') { %>
+		    <%= include('facewall/filters_age.tmpl') %>
+		    <% } %>
+		    <% if (jihadiType === 'dead') { %>
+		        <%= include('facewall/filters_group.tmpl') %>
+		    <% } else if (jihadiType === 'convicted') { %>
+		        <%= include('facewall/filters_offence.tmpl') %>
+		    <% } else if (jihadiType === 'alive') { %>
+		        <%= include('facewall/filters_gender.tmpl') %>
+		        <%= include('facewall/filters_hometown.tmpl') %>
+		    <% } %>
+		</form>
+
+
+
+		<ul class="ns_facewall__indicator">
+			<span class="ns_facewall__counter">40/40</span>
+		</ul>
+	</div>
+
+	<div class="ns_filter__cta ns_mob_toggle">Select a face</div>
+
+	<ul class="ns_facewall__list ns_mob_toggle">
+		<% if (jihadiType === 'dead') { %>
+			<%= include('facewall/list_dead.tmpl') %>
+		<% } else if(jihadiType === 'convicted') { %>
+			<%= include('facewall/list_convicted.tmpl') %>
+		<% } else if(jihadiType === 'alive') { %>
+			<%= include('facewall/list_alive.tmpl') %>
+		<% } %>
+	</ul>
+
+	
+	<div class="ns_facewall__panel ns__profile--enabled">
+		
+		<ul class="ns_facewall__portrait-wrapper"><%= include('facewall/portraits_' + jihadiType + '.tmpl') %></ul>
+    </div>
+	<div class="ns_clearfix"></div>
+
+</div>

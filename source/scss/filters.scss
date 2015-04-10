@@ -1,0 +1,81 @@
+.ns_facewall__filters {
+    display: block;
+}
+.ns_facewall__filters--hidden {
+    display: none;
+}
+
+.ns_facewall__filter {
+    li {
+        border: none;
+        display: inline-block;
+    }
+    a:visited {
+        color: #ffffff;
+    }
+
+}
+
+.ns_filter__cta {
+    display: block;
+}
+
+.ns_filter__toggle {
+    background-color: #e3e3e3;
+    color: #404040;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px 16px;
+}
+.ns_filter__toggle--active {
+    background-color: $bbcTeal;
+    color: #ffffff;
+}
+
+.ns_filter__control {
+    display: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    line-height: 16px;
+
+    div {
+        margin: 0 16px 12px 0;
+        display: inline-block;
+
+    }
+
+    legend {
+        text-indent: -10000px;
+    }
+
+    label {
+        margin: 0 20px 0 8px;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 16px;
+    }
+
+    input[type="checkbox"] {
+        float: left;
+        height: 16px;
+        width: 16px;
+        border: 1px solid #404040;
+    }
+}
+
+.ns_filter__control--active {
+    display: block;
+}
+
+@include respondMinMax (500px, 799px) {
+    .ns_facewall__filters--hidden {
+        display: block;
+    }
+}
+
+@include respondMinMax (800px, false) {
+    .ns_facewall__filters--hidden {
+        display: block;
+    }
+}

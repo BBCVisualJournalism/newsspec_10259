@@ -1,0 +1,22 @@
+{
+    "age": {
+        "label": "By age",
+        "filters": []
+    },
+    "offence": {
+        "label": "By age",
+        "filters": []
+    },
+    "gender": {
+        "label": "By age",
+        "filters": []
+    },
+    "hometown": {
+        "label": "By age",
+        "filters": []
+    },
+    "group": {
+        "label": "By age",
+        "filters": []
+    }
+}

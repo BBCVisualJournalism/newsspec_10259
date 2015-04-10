@@ -1,0 +1,56 @@
+.ns_facewall {
+    position: relative;
+}
+
+.ns_facewall__list {
+    margin-top: 6px;
+    max-width: 375px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.ns_facewall__list--hidden {
+    display: none;
+}
+
+.ns_facewall__panel {
+    display: none;
+}
+
+.ns_facewall__panel--narrow {
+    border-top: none;
+    display: block;
+    width: 100%;
+}
+
+.ns_clearfix {
+    clear: both;
+}
+
+@include respondMinMax (500px, 799px) {
+    .ns_facewall__list {
+        max-width: 300px;
+    }
+    .ns_facewall__list--hidden {
+        display: block;
+    }
+    .ns_facewall__panel {
+        display: block;
+        margin-left: 300px;
+        margin-top: -9px;
+    }
+}
+
+@include respondMinMax (800px, false) {
+    .ns_facewall__list {
+        max-width: 535px;
+    }
+    .ns_facewall__list--hidden {
+        display: block;
+    }
+    .ns_facewall__panel {
+        display: block;
+        margin-left: 535px;
+        margin-top: -9px;
+    }
+}
