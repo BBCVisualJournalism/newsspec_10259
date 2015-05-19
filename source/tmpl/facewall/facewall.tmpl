@@ -21,7 +21,7 @@
 		<a class="ns_filter__toggle ns_filter__toggle--active" href="age">By age</a>
 		<% } %>
 		<% if (jihadiType === 'dead') { %>
-		<a class="ns_filter__toggle" href="group">By group</a>
+		<a class="ns_filter__toggle" href="hometown">By home town</a>
 		<% } else if (jihadiType === 'convicted') { %>
 		<a class="ns_filter__toggle" href="offence">By offence</a>
 		<% } else if (jihadiType === 'alive') { %>
@@ -34,7 +34,7 @@
 		    <%= include('facewall/filters_age.tmpl') %>
 		    <% } %>
 		    <% if (jihadiType === 'dead') { %>
-		        <%= include('facewall/filters_group.tmpl') %>
+		        <%= include('facewall/filters_hometown.tmpl') %>
 		    <% } else if (jihadiType === 'convicted') { %>
 		        <%= include('facewall/filters_offence.tmpl') %>
 		    <% } else if (jihadiType === 'alive') { %>

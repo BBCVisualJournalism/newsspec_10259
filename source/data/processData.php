@@ -29,6 +29,7 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
     $penportraitText = 'pp' . $category;
     $_group = trim($data[array_search('group', $headers)]);
     $group = ($_group !== '') ? 'group-' . str_replace(' ', '-', strtolower($_group)): 'group-unknown';
+    $hometown = strtolower(trim($data[array_search('hometown', $headers)]));
     $offences = explode(',', $data[array_search('offences', $headers)]); //str_replace(' ', '-', strtolower(trim($data[25])));
     $link = trim($data[array_search('link', $headers)]);
     $headline = trim($data[array_search('headline', $headers)]);
@@ -53,7 +54,7 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
     if ($category === 'dead') {
         $dateOfDeathText = 'Date of death';
         $ageText = 'Age';
-        $liClassNames = "ns_facewall__item--{$age} ns_facewall__item--{$group}";
+        $liClassNames = "ns_facewall__item--{$age} ns_facewall__item--hometown-{$hometown}";
         $_month = trim($data[array_search('month_killed', $headers)]);
         $month = ($_month !== '') ? $months[(int)$_month - 1 ]: '';
         $dod = $month . ' ' . $data[array_search('year_killed', $headers)];
