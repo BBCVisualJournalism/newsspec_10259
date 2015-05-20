@@ -11,7 +11,6 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
     if ($rowIndex === 0) {
         $headers = $data;
         $rowIndex++;
-        // var_dump($headers); exit;
         continue;
     }
     
@@ -30,7 +29,7 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
     $_group = trim($data[array_search('group', $headers)]);
     $group = ($_group !== '') ? 'group-' . str_replace(' ', '-', strtolower($_group)): 'group-unknown';
     $hometown = strtolower(trim($data[array_search('hometown', $headers)]));
-    $offences = explode(',', $data[array_search('offences', $headers)]); //str_replace(' ', '-', strtolower(trim($data[25])));
+    $offences = explode(',', $data[array_search('offences', $headers)]);
     $link = trim($data[array_search('link', $headers)]);
     $headline = trim($data[array_search('headline', $headers)]);
     $linkText = ($link!== '') ? "<a class=\"ns_facewall__storylink\" href=\"{$link}\" target=\"ns__linkout\">{$headline}</a>": '';
