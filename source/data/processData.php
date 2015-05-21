@@ -90,7 +90,6 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
 
         $liClassNames = "ns_facewall__item--{$age} ns_facewall__item--hometown-{$hometownClass} ns_facewall__item--gender-{$gender}";
         $groupMarkup = '';
-
     }
 
     $$category .= "
