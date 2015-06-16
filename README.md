@@ -39,6 +39,11 @@ This script is responsible for creating the following includes in the 'source/tm
 
 This particular project has 3 different facewalls (alive, convicted, dead)
 
+#### Profiles
+
+You may be required to update the total profiles if they change in the data. Update $totalProfiles in main.scss to the maximun ID value found in row 1 (not the total number of rows)
+Please note that this value depends with the depth of the sprite so if  the total number is 114, and the sprite conforms to 114 then 114 will work but if index of profile image
+is beyond that then you will need a higher number. you will have to liaise with designer about specifics of sprite.
 
 ### Common requests
 A filter is returning 0. This is because people have been removed
