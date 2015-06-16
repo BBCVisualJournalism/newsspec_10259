@@ -45,6 +45,13 @@ You may be required to update the total profiles if they change in the data. Upd
 Please note that this value depends with the depth of the sprite so if  the total number is 114, and the sprite conforms to 114 then 114 will work but if index of profile image
 is beyond that then you will need a higher number. you will have to liaise with designer about specifics of sprite.
 
+#### Versioning
+
+You may need to push the version number of the project. Update the version number in the package file. Also update the version numbers to sprites in the following files.
+
+source/scss/facewall.scss
+source/scss/panel.scss
+
 ### Common requests
 A filter is returning 0. This is because people have been removed
 * Check the value of the tick box matches the name of the string in the spreadsheet. for instance if someone belonged to a group called "this is a group", the tick-box value would be
