@@ -15,6 +15,7 @@ while(($data = fgetcsv($csv, 0, ',')) !== false) {
     }
     
     $id = (int) $data[array_search('id', $headers)];
+    if ($id === 0) { continue; }
     $thumbClassName = (strtolower($data[array_search('image', $headers)]) === 'y') ? $id: 'silhouette';
     $_name = trim($data[array_search('name', $headers)]);
     $name = ($_name !== '') ? $_name: 'Real name: Unconfirmed';
