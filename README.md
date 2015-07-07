@@ -18,21 +18,15 @@ grunt images
 
 ### Data
 
-The dataset is on the Box platform. Speak to editorial for access to the dataset
+This Dataset is stored inside an IDT dataset [found here](https://production.live.bbc.co.uk/isite2-xforms/fr/indepthtoolkit/dataset/edit/f5f21b32-f8c8-4d6c-a3c7-4bb9c89dbe22) and the JSON from the dataset can be found [here](http://www.bbc.co.uk/indepthtoolkit/data_set/jhadi-facewall)
 
-To process a data update, download the dataset as a CSV file (rename the file to dataset.csv) into the data directory;
-
+To update the data simply run:
 ```
-./source/data/dataset.csv
-```
-
-Run processData.php to get the dataset into the project
-
-```
-php source/data/processData.php
+grunt update_from_idt
+grunt
 ```
 
-#### processData.php
+#### tasks/update_from_idt.js
 This script is responsible for creating the following includes in the 'source/tmpl/facewall' directory;
 * facewall markup i.e. source/tmpl/facewall/list_alive.tmpl
 * facewall pen-portrait markup i.e. source/tmpl/facewall/portraits_alive.tmpl
