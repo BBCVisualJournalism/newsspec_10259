@@ -4,21 +4,15 @@ module.exports = function (grunt) {
         var pkg         = grunt.file.readJSON('package.json')
         var http        = require('http');
         var fs          = require('fs');
-        var done = this.async();
+        var done        = this.async();
         
         grunt.log.writeln('Changing');
         
         getDataFromIDT(function (data) {
             var jihadArray = convertDataToArray(data);
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            var outputFiles = {
-                'list_dead': '',
-                'list_conficted': '',
-                'list_alive': '',
-                'portraits_dead': '',
-                'portraits_conficted': '',
-                'portraits_alive': ''
-            }
+            var outputFiles = {};
+
             jihadArray.forEach(function (jihad) {
                 jihad = transformJihad(jihad); 
 
@@ -36,15 +30,46 @@ module.exports = function (grunt) {
                 if (jihad.category === 'dead') {
                     dateOfDeathText = 'Date of death';
                     ageText = 'Age';
-                    liClassNames = 'ns_facewall__item--' + jihad.age + ' ns_facewall__item--hometown-' + jihad.hometown;
+                    hometownClass = jihad.hometown.trim().replace(/ /g, '-').toLowerCase();
+                    liClassNames = 'ns_facewall__item--' + jihad.age + ' ns_facewall__item--hometown-' + hometownClass;
                     month = (jihad.month_killed) ? months[parseInt(jihad.month_killed, 10)] : '';
                     dod = month + ' ' + jihad.year_killed;
                     dateOfDeathConviction = (dod.trim() !== '') ? dod : 'Unconfirmed';
                     groupOffences = 'Group';
                     groupOffenceNames = (jihad.group) ? jihad.group : 'Unconfirmed';
                     groupMarkup = '<span class="ns_facewall__group portrait__atrribute">' + groupOffences + ': ' + groupOffenceNames + '</span>' 
+                } else if (jihad.category === 'convicted') {
+                    dateOfDeathText = 'Date of conviction';
+                    ageText = 'Age when convicted';
+                    liClassNames = 'ns_facewall__item--' + jihad.age;
+                    groupOffences= 'Offence';
+                    jihad.offences.forEach(function (offence) {
+                        if (offence.trim() !== '') {
+                            var _offence = offence.trim().toLowerCase().replace(/\./g, '').replace(/ /g, '-');
+                            liClassNames += ' ns_facewall__item--offence-' + _offence;
+                        }
+                    });
+                    month = (jihad.sentence_month !== '') ? months[parseInt(jihad.sentence_month, 10)] : '';
+                    doc = jihad.sentence_day + ' ' + month + ' ' + jihad.sentence_year;
+                    dateOfDeathConviction = (doc.trim() !== '') ? doc: 'Unconfirmed';
+                    offencesString = jihad.offences.join(', ');
+                    groupOffenceNames = (offencesString.trim() !== '') ? offencesString : 'Unconfirmed';
+                    groupMarkup = '<span class="ns_facewall__group portrait__atrribute">' + groupOffences + ': ' + groupOffenceNames + '</span>';
+                } else if (jihad.category === 'alive') {
+                    dateOfDeathText = 'Home town';
+                    dateOfDeathConviction = jihad.hometownString;
+                    ageText = 'Age when left UK';
+                    hometown = jihad.hometown;
+                    hometownClass = hometown.trim().replace(/ /g, '-').toLowerCase();
+                    gender = jihad.gender;
+                    offencesString = jihad.offences.join(', ');
+                    groupOffenceNames = (offencesString.trim() !== '') ? offencesString : 'Unconfirmed';
+                    liClassNames = 'ns_facewall__item--' + jihad.age + ' ns_facewall__item--hometown-' + hometownClass  + ' ns_facewall__item--gender-' + gender;
+                    groupMarkup = '';
                 }
 
+
+                outputFiles['list_' + jihad.category] = outputFiles['list_' + jihad.category] || '';
                 outputFiles['list_' + jihad.category] += '' +
                 '<li class="ns_facewall__item ' + liClassNames + ' ns_facewall__item--filtered">' +
                     '<a class="ns_facewall__thumb ns_facewall__thumb--' + jihad.thumbClassName + '" href="#ns_facewall--' + jihad.id + '"><span>' + jihad.name + '</span><span>Age: ' + jihad.ageValue + '</span></a>' +
@@ -52,21 +77,41 @@ module.exports = function (grunt) {
                         '<span class="ns_facewall__tooltipname">' +jihad.name + '</span>' +
                     '</div>' +
                 '</li>';
+
+                outputFiles['portrait_' + jihad.category] = outputFiles['portrait_' + jihad.category] || '';
+                outputFiles['portrait_' + jihad.category] += '' +
+                    '<li id="ns_facewall--' + jihad.id + '" class="ns_facewall__portrait">' +
+                        '<h2 class="ns_facewall__name">' + jihad.name + '</h2>' +
+                        '<span class="ns_facewall__potrait-img ns_facewall__potrait-img--' + jihad.thumbClassName + '"></span>' +
+                        jihad.aka +
+                        '<span class="ns_facewall__age portrait__atrribute">' + ageText + ': ' + jihad.ageValue + '</span>' +
+                        '<span class="ns_facewall__dod portrait__atrribute">' + dateOfDeathText + ': ' + dateOfDeathConviction + '</span>' +
+                        groupMarkup + ' ' +
+                        '<p class="ns_facewall__profile portrait__atrribute">'+ jihad.profile + '</p>' +
+                        jihad.linkText +
+                    '</li>';
             });
 
-            console.log(outputFiles.list_dead);
+            fs.writeFileSync('source/tmpl/facewall/list_dead.tmpl', outputFiles.list_dead); 
+            fs.writeFileSync('source/tmpl/facewall/list_convicted.tmpl', outputFiles.list_convicted); 
+            fs.writeFileSync('source/tmpl/facewall/list_alive.tmpl', outputFiles.list_alive); 
+
+            fs.writeFileSync('source/tmpl/facewall/portraits_dead.tmpl', outputFiles.portrait_dead); 
+            fs.writeFileSync('source/tmpl/facewall/portraits_convicted.tmpl', outputFiles.portrait_convicted); 
+            fs.writeFileSync('source/tmpl/facewall/portraits_alive.tmpl', outputFiles.portrait_alive); 
 
             done();
         });
 
         function transformJihad(jihad) {
-            jihad.thumbClassName = (jihad.image === 'y') ? jihad.id : 'silhouette';
+            jihad.thumbClassName = (jihad.image.toLowerCase() === 'y') ? jihad.id : 'silhouette';
             jihad.name = jihad.name || 'Real name: Unconfirmed';
             jihad.aka = (jihad.aka) ? '<h3 class="ns_facewall__alias">Also known as: ' + jihad.aka + '</h3>' : '';
             jihad.ageValue = jihad.age || 'Unconfirmed';
             jihad.category = jihad.category.toLowerCase().trim(); 
             jihad.penportraitText = 'pp' + jihad.category;
             jihad.group = jihad.group.trim();
+            jihad.hometownString = jihad.hometown;
             jihad.hometown = jihad.hometown.toLowerCase();
             jihad.offences = jihad.offences.split(',');
             jihad.link = jihad.link.trim();
