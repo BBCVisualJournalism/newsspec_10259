@@ -16,6 +16,26 @@ module.exports = function (grunt) {
             jihadArray.forEach(function (jihad) {
                 jihad = transformJihad(jihad); 
 
+                // jihad.month_killed
+                var monthStrToIntDict = {
+                    'January': 1,
+                    'February': 2,
+                    'March': 3,
+                    'April': 4,
+                    'May': 5,
+                    'June': 6,
+                    'July': 7,
+                    'August': 8,
+                    'September': 9,
+                    'October': 10,
+                    'November': 11,
+                    'December': 12
+                }
+
+                if (monthStrToIntDict[jihad.month_killed]) {
+                    jihad.month_killed = monthStrToIntDict[jihad.month_killed];
+                }
+
                 var dateOfDeath,
                     ageText,
                     liClassNames,
@@ -32,7 +52,7 @@ module.exports = function (grunt) {
                     ageText = 'Age';
                     hometownClass = jihad.hometown.trim().replace(/ /g, '-').toLowerCase();
                     liClassNames = 'ns_facewall__item--' + jihad.age + ' ns_facewall__item--hometown-' + hometownClass;
-                    month = (jihad.month_killed) ? months[parseInt(jihad.month_killed, 10)] : '';
+                    month = (jihad.month_killed) ? months[parseInt(jihad.month_killed, 10) - 1] : '';
                     dod = month + ' ' + jihad.year_killed;
                     dateOfDeathConviction = (dod.trim() !== '') ? dod : 'Unconfirmed';
                     groupOffences = 'Group';
@@ -49,7 +69,7 @@ module.exports = function (grunt) {
                             liClassNames += ' ns_facewall__item--offence-' + _offence;
                         }
                     });
-                    month = (jihad.sentence_month !== '') ? months[parseInt(jihad.sentence_month, 10)] : '';
+                    month = (jihad.sentence_month !== '') ? months[parseInt(jihad.sentence_month, 10) - 1] : '';
                     doc = jihad.sentence_day + ' ' + month + ' ' + jihad.sentence_year;
                     dateOfDeathConviction = (doc.trim() !== '') ? doc: 'Unconfirmed';
                     offencesString = jihad.offences.join(', ');
@@ -114,8 +134,26 @@ module.exports = function (grunt) {
             jihad.hometownString = jihad.hometown;
             jihad.hometown = jihad.hometown.toLowerCase();
             jihad.offences = jihad.offences.split(',');
+            // console.log('***link = ', jihad.link);
+            if (jihad.link.indexOf('<span style="font-size: 12.8px;">') > -1) {
+                jihad.link = jihad.link.substring('<span style="font-size: 12.8px;">'.length, jihad.link.length);
+            }
+            if (jihad.link.indexOf('</span>') > -1) {
+                jihad.link = jihad.link.substring(0, jihad.link.length - '</span>'.length);
+            }
             jihad.link = jihad.link.trim();
             jihad.headline = jihad.headline.trim();
+
+            if (jihad.headline.indexOf('<span style="font-size: 12.8px;">') > -1) {
+                jihad.headline = jihad.headline.substring('<span style="font-size: 12.8px;">'.length, jihad.headline.length);
+            }
+            if (jihad.headline.indexOf('</span>') > -1) {
+                jihad.headline = jihad.headline.substring(0, jihad.headline.length - '</span><br>'.length);
+            }
+                
+            // console.log('***********link = ', jihad.link);
+            console.log('***********headline = ', jihad.headline);
+
             jihad.linkText = (jihad.link) ? '<a class="ns_facewall__storylink" href="' + jihad.link + '" target="ns__linkout">' + jihad.headline + '</a>' : '';
             
             if(jihad.age !== '') {
