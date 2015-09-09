@@ -16,7 +16,6 @@ module.exports = function (grunt) {
             jihadArray.forEach(function (jihad) {
                 jihad = transformJihad(jihad); 
 
-                // jihad.month_killed
                 var monthStrToIntDict = {
                     'January': 1,
                     'February': 2,
@@ -33,7 +32,22 @@ module.exports = function (grunt) {
                 }
 
                 if (monthStrToIntDict[jihad.month_killed]) {
-                    jihad.month_killed = monthStrToIntDict[jihad.month_killed];
+                    console.log('order: ', jihad.order, 'name: ', jihad.name, 'month_killed: ', jihad.month_killed);
+                }
+                if (monthStrToIntDict[jihad.sentence_month]) {
+                    console.log('order: ', jihad.order, ', name: ', jihad.name, ', sentence_month: ', jihad.sentence_month);
+                }
+
+                if (jihad.link.indexOf('<span style="font-size: 12.8px;">') > -1) {
+                    console.log('id: ', jihad.id, 'link: ', jihad.link);
+                }
+
+                if (jihad.headline.indexOf('<span style="font-size: 12.8px;">') > -1) {
+                    console.log('id: ', jihad.id, 'headline: ', jihad.headline);
+                }
+
+                if (jihad.profile.indexOf('\ufffd') > -1) {
+                    console.log('order: ', jihad.order, ', name: ', jihad.name)
                 }
 
                 var dateOfDeath,
@@ -134,25 +148,8 @@ module.exports = function (grunt) {
             jihad.hometownString = jihad.hometown;
             jihad.hometown = jihad.hometown.toLowerCase();
             jihad.offences = jihad.offences.split(',');
-            // console.log('***link = ', jihad.link);
-            if (jihad.link.indexOf('<span style="font-size: 12.8px;">') > -1) {
-                jihad.link = jihad.link.substring('<span style="font-size: 12.8px;">'.length, jihad.link.length);
-            }
-            if (jihad.link.indexOf('</span>') > -1) {
-                jihad.link = jihad.link.substring(0, jihad.link.length - '</span>'.length);
-            }
             jihad.link = jihad.link.trim();
             jihad.headline = jihad.headline.trim();
-
-            if (jihad.headline.indexOf('<span style="font-size: 12.8px;">') > -1) {
-                jihad.headline = jihad.headline.substring('<span style="font-size: 12.8px;">'.length, jihad.headline.length);
-            }
-            if (jihad.headline.indexOf('</span>') > -1) {
-                jihad.headline = jihad.headline.substring(0, jihad.headline.length - '</span><br>'.length);
-            }
-                
-            // console.log('***********link = ', jihad.link);
-            console.log('***********headline = ', jihad.headline);
 
             jihad.linkText = (jihad.link) ? '<a class="ns_facewall__storylink" href="' + jihad.link + '" target="ns__linkout">' + jihad.headline + '</a>' : '';
             
