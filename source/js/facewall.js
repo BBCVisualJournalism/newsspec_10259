@@ -102,14 +102,12 @@ define(['lib/news_special/bootstrap', 'filters', 'options', 'pen_portrait', 'too
                 });
             }
 
+
             news.$(options.cta.backToFacewall).on('click', function (ev) {
                 ev.preventDefault();
                 news.pubsub.emit(options.facewall.backtofacewall);
             });
 
-            news.$(window).resize(function () {
-                news.pubsub.emit('resize');
-            });
         },
 
         showFace: function (classNameSuffix) {
