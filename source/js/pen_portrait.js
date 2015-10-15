@@ -13,6 +13,8 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             left: 0
         };
 
+        this.correctOffset = false;
+
         this.init();
     };
 
@@ -26,8 +28,8 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
                 self.handleResize();
             });
 
-            self.setIframeOffset();
-            self.setListOffset();
+            self.iframeOffset = self.getIframeOffset();
+            self.listOffset = self.getListOffset();
 
             if (self.isMobileView()) {
                 self.disableAutomaticRepositioning();
@@ -74,19 +76,26 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             this.currentFacewall = thumbNode.closest('.ns_facewall').attr('data');
         },
 
-        setIframeOffset: function () {
+        getIframeOffset: function () {
             var iframeUrl = window.location.href.split('?')[0];
             var iframeCategory = iframeUrl.match('english/(.*).html')[1];
+
+            var newOffset;
+
             try {
-                this.iframeOffset = news.$(window.parent.document).find('#ns_facewall__' + iframeCategory + ' .responsive-iframe').offset();
+                newOffset = news.$(window.parent.document)
+                    .find('#ns_facewall__' + iframeCategory + ' .responsive-iframe')
+                    .offset();
             } catch (e) {
-                this.iframeOffset.top = 0;
-                this.iframeOffset.left = 0;
+                newOffset.top = 0;
+                newOffset.left = 0;
             }
+
+            return newOffset;
         },
 
-        setListOffset: function () {
-            this.listOffset = news.$(options.facewall.facewallList).offset();
+        getListOffset: function () {
+            return news.$(options.facewall.facewallList).offset();
         },
 
         isMobileView: function () {
@@ -129,6 +138,7 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
 
             news.$(window.parent.document, window.parent.document).ready(function () {
                 news.$(window.parent, window.parent.document).scroll(function () {
+                    self.checkCorrectOffset();
                     self.setPortraitPos();
                 });
             });
@@ -142,14 +152,26 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
         handleResize: function () {
             var self = this;
 
-            self.setIframeOffset();
-            self.setListOffset();
+            self.iframeOffset = self.getIframeOffset();
+            self.listOffset = self.getListOffset();
 
             if (self.isMobileView()) {
                 self.disableAutomaticRepositioning();
             } else {
                 self.enableAutomaticRepositioning();
                 self.setPortraitPos();
+            }
+        },
+
+        //checks if the iframe offset was correctly set at init and corrects it if not
+        checkCorrectOffset: function () {
+            if (!this.correctOffset) { //boolean check in case the offset has been previously corrected
+                var offset = this.getIframeOffset();
+                if (this.iframeOffset.top !== offset.top) {
+                    console.log('iframe offset currently set to ' + this.iframeOffset.top, '\nactual iframe offset is ' + offset.top, '\ncorrecting iframe offset');
+                    this.iframeOffset = offset;
+                }
+                this.correctOffset = true;
             }
         }
     };
