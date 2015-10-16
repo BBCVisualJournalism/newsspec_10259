@@ -168,7 +168,6 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             if (!this.correctOffset) { //boolean check in case the offset has been previously corrected
                 var offset = this.getIframeOffset();
                 if (this.iframeOffset.top !== offset.top) {
-                    console.log('iframe offset currently set to ' + this.iframeOffset.top, '\nactual iframe offset is ' + offset.top, '\ncorrecting iframe offset');
                     this.iframeOffset = offset;
                 }
                 this.correctOffset = true;
