@@ -216,10 +216,11 @@ module.exports = function (grunt) {
             grunt.log.writeln('Got here');
             var request = {
                 host: 'www.bbc.co.uk',
-                path: '/indepthtoolkit/data_set/jhadi-facewall'
-            }
+                path: '/indepthtoolkit/data-sets/jhadi-facewall'
+            };
             grunt.log.writeln(JSON.stringify(getHttpOptions(request)));
             http.request(getHttpOptions(request), function (res) {
+
                 var str = '';
 
                 res.on('data', function (chunk) {
