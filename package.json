@@ -5,7 +5,7 @@
     "url": "http://github.com/BBCVisualJournalism/newsspec_10259"
   },
   "description":    "Project Blackwood",
-  "version":        "6.1.193",
+  "version":        "6.1.213",
   "devDependencies": {
     "grunt":                            "~0.4.0",
     "grunt-bump":                       "~0.0.15",
