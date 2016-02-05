@@ -1,6 +1,9 @@
 @import "news_special/defaults";
 @import "app";
 
+$imageVersions: 31;
+$totalProfiles: 220;
+
 $anchor-active: #f00;
 $bbcTeal: #007f7f;
 $borderLineColor: #dbdadb;
@@ -14,14 +17,8 @@ $graph-multiplier-group-1: 1.7%;
 $graph-multiplier-group-3: 1.48%;
 $graph-multiplier-group-4: 1.76%;
 
-
-$totalProfiles: 175;
-
-$imageVersions: 30;
-
-
 .main {
-    
+
     color: #404040;
     font-size: 1.000em;
     line-height: 1.500em;
