@@ -87,6 +87,7 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
                     .find('#ns_facewall__' + iframeCategory + ' .responsive-iframe')
                     .offset();
             } catch (e) {
+                newOffset = {};
                 newOffset.top = 0;
                 newOffset.left = 0;
             }
