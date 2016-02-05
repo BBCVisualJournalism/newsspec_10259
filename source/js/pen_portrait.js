@@ -80,14 +80,13 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             var iframeUrl = window.location.href.split('?')[0];
             var iframeCategory = iframeUrl.match('english/(.*).html')[1];
 
-            var newOffset;
+            var newOffset = {};
 
             try {
                 newOffset = news.$(window.parent.document)
                     .find('#ns_facewall__' + iframeCategory + ' .responsive-iframe')
                     .offset();
             } catch (e) {
-                newOffset = {};
                 newOffset.top = 0;
                 newOffset.left = 0;
             }

@@ -17,20 +17,6 @@ module.exports = function (grunt) {
         }]
     });
 
-    grunt.config('responsive_images', {
-        main: {
-            options: {
-                sizes: imageWidths
-            },
-            files: [{
-                expand: true,
-                src: ['**.{jpg,gif,png}'],
-                cwd: 'source/img/responsive',
-                custom_dest: 'content/<%= config.services.default %>/img/{%= width %}/'
-            }]
-        }
-    });
-
     grunt.config('imagemin', {
         dist: {
             options: {
@@ -48,6 +34,6 @@ module.exports = function (grunt) {
     });
 
 	grunt.registerTask('images', function () {
-        grunt.task.run('copy:standardImages', 'responsive_images', 'imagemin');
+        grunt.task.run('copy:standardImages', 'imagemin');
     });
 };

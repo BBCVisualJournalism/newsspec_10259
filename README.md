@@ -1,6 +1,5 @@
 # Tracking Britain's jihadists
-
- Tracking Britain's jihadists - http://www.bbc.co.uk/news/uk-32026985
+Tracking Britain's jihadists - http://www.bbc.co.uk/news/uk-32026985
 
 ## Getting started
 
@@ -18,13 +17,14 @@ grunt images
 
 ### Data
 
-This Dataset is stored inside an IDT dataset [found here](https://production.live.bbc.co.uk/isite2-xforms/fr/indepthtoolkit/dataset/edit/f5f21b32-f8c8-4d6c-a3c7-4bb9c89dbe22) and the JSON from the dataset can be found [here](http://www.bbc.co.uk/indepthtoolkit/data_set/jhadi-facewall)
+This Dataset is stored inside an [IDT dataset found here](https://production.live.bbc.co.uk/isite2-xforms/fr/indepthtoolkit/dataset/edit/f5f21b32-f8c8-4d6c-a3c7-4bb9c89dbe22) and the [JSON from the dataset can be found here](http://www.bbc.co.uk/indepthtoolkit/data_set/jhadi-facewall).
 
 To update the data simply run:
 ```
 grunt update_from_idt
-grunt
 ```
+
+You will then need to `grunt` again.
 
 #### tasks/update_from_idt.js
 This script is responsible for creating the following includes in the 'source/tmpl/facewall' directory;
@@ -35,9 +35,9 @@ This particular project has 3 different facewalls (alive, convicted, dead)
 
 #### Profiles
 
-You may be required to update the total profiles if they change in the data. Update $totalProfiles in main.scss to the maximun ID value found in row 1 (not the total number of rows)
-Please note that this value depends with the depth of the sprite so if  the total number is 114, and the sprite conforms to 114 then 114 will work but if index of profile image
-is beyond that then you will need a higher number. you will have to liaise with designer about specifics of sprite.
+There is a $totalProfiles count in main.scss which defines CSS background-position rules for all profiles.
+
+If enough new profiles are added, you may need to update the `$totalProfiles` count. But this is unlikely as the number has been set to 220 (at time of writing) when only 179 profiles exist.
 
 #### Versioning
 
