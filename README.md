@@ -41,10 +41,11 @@ If enough new profiles are added, you may need to update the `$totalProfiles` co
 
 #### Versioning
 
-You may need to push the version number of the project. Update the version number in the package file. Also update the version numbers to sprites in the following files.
+You may need to push the version number of the project. Update the version number in the package file. Also update the version numbers to sprites in the following files:
 
-source/scss/facewall.scss
-source/scss/panel.scss
+`$imageVersions: VERSION-NUMBER;`
+
+...in source/scss/main.scss.
 
 ### Common requests
 A filter is returning 0. This is because people have been removed

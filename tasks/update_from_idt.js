@@ -5,16 +5,16 @@ module.exports = function (grunt) {
         var http        = require('http');
         var fs          = require('fs');
         var done        = this.async();
-        
+
         grunt.log.writeln('Changing');
-        
+
         getDataFromIDT(function (data) {
             var jihadArray = convertDataToArray(data);
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             var outputFiles = {};
 
             jihadArray.forEach(function (jihad) {
-                jihad = transformJihad(jihad); 
+                jihad = transformJihad(jihad);
 
                 var monthStrToIntDict = {
                     'January': 1,
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                     groupOffenceNames,
                     groupMarkup;
 
-                
+
                 if (jihad.category === 'dead') {
                     dateOfDeathText = 'Date of death';
                     ageText = 'Age';
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                     dateOfDeathConviction = (dod.trim() !== '') ? dod : 'Unconfirmed';
                     groupOffences = 'Group';
                     groupOffenceNames = (jihad.group) ? jihad.group : 'Unconfirmed';
-                    groupMarkup = '<span class="ns_facewall__group portrait__atrribute">' + groupOffences + ': ' + groupOffenceNames + '</span>' 
+                    groupMarkup = '<span class="ns_facewall__group portrait__atrribute">' + groupOffences + ': ' + groupOffenceNames + '</span>'
                 } else if (jihad.category === 'convicted') {
                     dateOfDeathText = 'Date of conviction';
                     ageText = 'Age when convicted';
@@ -126,13 +126,13 @@ module.exports = function (grunt) {
                     '</li>';
             });
 
-            fs.writeFileSync('source/tmpl/facewall/list_dead.tmpl', outputFiles.list_dead); 
-            fs.writeFileSync('source/tmpl/facewall/list_convicted.tmpl', outputFiles.list_convicted); 
-            fs.writeFileSync('source/tmpl/facewall/list_alive.tmpl', outputFiles.list_alive); 
+            fs.writeFileSync('source/tmpl/facewall/list_dead.tmpl', outputFiles.list_dead);
+            fs.writeFileSync('source/tmpl/facewall/list_convicted.tmpl', outputFiles.list_convicted);
+            fs.writeFileSync('source/tmpl/facewall/list_alive.tmpl', outputFiles.list_alive);
 
-            fs.writeFileSync('source/tmpl/facewall/portraits_dead.tmpl', outputFiles.portrait_dead); 
-            fs.writeFileSync('source/tmpl/facewall/portraits_convicted.tmpl', outputFiles.portrait_convicted); 
-            fs.writeFileSync('source/tmpl/facewall/portraits_alive.tmpl', outputFiles.portrait_alive); 
+            fs.writeFileSync('source/tmpl/facewall/portraits_dead.tmpl', outputFiles.portrait_dead);
+            fs.writeFileSync('source/tmpl/facewall/portraits_convicted.tmpl', outputFiles.portrait_convicted);
+            fs.writeFileSync('source/tmpl/facewall/portraits_alive.tmpl', outputFiles.portrait_alive);
 
             done();
         });
@@ -142,7 +142,7 @@ module.exports = function (grunt) {
             jihad.name = jihad.name || 'Real name: Unconfirmed';
             jihad.aka = (jihad.aka) ? '<h3 class="ns_facewall__alias">Also known as: ' + jihad.aka + '</h3>' : '';
             jihad.ageValue = jihad.age || 'Unconfirmed';
-            jihad.category = jihad.category.toLowerCase().trim(); 
+            jihad.category = jihad.category.toLowerCase().trim();
             jihad.penportraitText = 'pp' + jihad.category;
             jihad.group = jihad.group.trim();
             jihad.hometownString = jihad.hometown;
@@ -152,10 +152,10 @@ module.exports = function (grunt) {
             jihad.headline = jihad.headline.trim();
 
             jihad.linkText = (jihad.link) ? '<a class="ns_facewall__storylink" href="' + jihad.link + '" target="ns__linkout">' + jihad.headline + '</a>' : '';
-            
+
             if(jihad.age !== '') {
                 if (jihad.age <= 20) {
-                    jihad.age = 'age-17-20';
+                    jihad.age = 'age-15-20';
                 } else if (jihad.age <= 25) {
                     jihad.age = 'age-21-25';
                 } else if (jihad.age <= 30) {
@@ -167,8 +167,8 @@ module.exports = function (grunt) {
                 jihad.age = 'age-unknown';
             }
 
-            
-            return jihad; 
+
+            return jihad;
         }
 
         function convertDataToArray(data) {
@@ -211,7 +211,7 @@ module.exports = function (grunt) {
             }
             return options;
         };
-    
+
         function getDataFromIDT(callback) {
             grunt.log.writeln('Got here');
             var request = {
@@ -228,7 +228,7 @@ module.exports = function (grunt) {
                 });
 
                 res.on('end', function (data) {
-                   callback(JSON.parse(str)); 
+                   callback(JSON.parse(str));
                 });
             }).end();
         };
