@@ -6,18 +6,16 @@
         <input id="ns_facewall__input--hometown-aberdeen" class="ns_facewall__input ns_facewall__input--hometown-aberdeen" value="hometown-aberdeen" type="checkbox" />
     </div>
     <% } %>
-    <% if (jihadiType === 'alive') { %>
+    <% if (jihadiType === 'dead') { %>
         <div>
             <label for="ns_facewall__input--hometown-birmingham">Birmingham</label>
             <input id="ns_facewall__input--hometown-birmingham" class="ns_facewall__input ns_facewall__input--hometown-birmingham" value="hometown-birmingham" type="checkbox" />
         </div>
+    <% } %>
+    <% if (jihadiType === 'alive') { %>
         <div>
             <label for="ns_facewall__input--hometown-bradford">Bradford</label>
             <input id="ns_facewall__input--hometown-bradford" class="ns_facewall__input ns_facewall__input--hometown-bradford" value="hometown-bradford" type="checkbox" />
-        </div>
-        <div>
-            <label for="ns_facewall__input--hometown-bristol">Bristol</label>
-            <input id="ns_facewall__input--hometown-bristol" class="ns_facewall__input ns_facewall__input--hometown-bristol" value="hometown-bristol" type="checkbox" />
         </div>
     <% } %>
     <div>
@@ -26,12 +24,22 @@
     </div>
     <% if (jihadiType === 'alive') { %>
         <div>
+            <label for="ns_facewall__input--hometown-bristol">Bristol</label>
+            <input id="ns_facewall__input--hometown-bristol" class="ns_facewall__input ns_facewall__input--hometown-bristol" value="hometown-bristol" type="checkbox" />
+        </div>
+        <div>
             <label for="ns_facewall__input--hometown-cardiff">Cardiff</label>
             <input id="ns_facewall__input--hometown-cardiff" class="ns_facewall__input ns_facewall__input--hometown-cardiff" value="hometown-cardiff" type="checkbox" />
         </div>
         <div>
             <label for="ns_facewall__input--hometown-chatham">Chatham</label>
             <input id="ns_facewall__input--hometown-chatham" class="ns_facewall__input ns_facewall__input--hometown-chatham" value="hometown-chatham" type="checkbox" />
+        </div>
+    <% } %>
+    <% if (jihadiType === 'dead') { %>
+        <div>
+            <label for="ns_facewall__input--hometown-cardiff">Cardiff</label>
+            <input id="ns_facewall__input--hometown-cardiff" class="ns_facewall__input ns_facewall__input--hometown-cardiff" value="hometown-cardiff" type="checkbox" />
         </div>
     <% } %>
     <div>
@@ -58,6 +66,10 @@
             <input id="ns_facewall__input--hometown-dudley" class="ns_facewall__input ns_facewall__input--hometown-dudley" value="hometown-dudley" type="checkbox" />
         </div>
         <div>
+            <label for="ns_facewall__input--hometown-east-anglia">East Anglia</label>
+            <input id="ns_facewall__input--hometown-east-anglia" class="ns_facewall__input ns_facewall__input--hometown-east-anglia" value="hometown-east-anglia" type="checkbox" />
+        </div>
+        <div>
             <label for="ns_facewall__input--hometown-glasgow">Glasgow</label>
             <input id="ns_facewall__input--hometown-glasgow" class="ns_facewall__input ns_facewall__input--hometown-glasgow" value="hometown-glasgow" type="checkbox" />
         </div>
@@ -65,11 +77,31 @@
             <label for="ns_facewall__input--hometown-high-wycombe">High Wycombe</label>
             <input id="ns_facewall__input--hometown-high-wycombe" class="ns_facewall__input ns_facewall__input--hometown-high-wycombe" value="hometown-high-wycombe" type="checkbox" />
         </div>
+        <div>
+            <label for="ns_facewall__input--hometown-leicester">Leicester</label>
+            <input id="ns_facewall__input--hometown-leicester" class="ns_facewall__input ns_facewall__input--hometown-leicester" value="hometown-leicester" type="checkbox" />
+        </div>
+        <div>
+            <label for="ns_facewall__input--hometown-liverpool">Liverpool</label>
+            <input id="ns_facewall__input--hometown-liverpool" class="ns_facewall__input ns_facewall__input--hometown-liverpool" value="hometown-liverpool" type="checkbox" />
+        </div>
+    <% } %>
+    <% if (jihadiType === 'dead') { %>
+        <div>
+            <label for="ns_facewall__input--hometown-dewsbury">Dewsbury</label>
+            <input id="ns_facewall__input--hometown-dewsbury" class="ns_facewall__input ns_facewall__input--hometown-dewsbury" value="hometown-dewsbury" type="checkbox" />
+        </div>
     <% } %>
     <div>
         <label for="ns_facewall__input--hometown-london">London</label>
         <input id="ns_facewall__input--hometown-london" class="ns_facewall__input ns_facewall__input--hometown-london" value="hometown-london" type="checkbox" />
     </div>
+    <% if (jihadiType === 'dead') { %>
+        <div>
+            <label for="ns_facewall__input--hometown-luton">Luton</label>
+            <input id="ns_facewall__input--hometown-luton" class="ns_facewall__input ns_facewall__input--hometown-luton" value="hometown-luton" type="checkbox" />
+        </div>
+    <% } %>
     <% if (jihadiType === 'alive') { %>
         <div>
             <label for="ns_facewall__input--hometown-luton">Luton</label>
@@ -80,29 +112,25 @@
         <label for="ns_facewall__input--hometown-manchester">Manchester</label>
         <input id="ns_facewall__input--hometown-manchester" class="ns_facewall__input ns_facewall__input--hometown-manchester" value="hometown-manchester" type="checkbox" />
     </div>
-    <div>
-        <label for="ns_facewall__input--hometown-portsmouth">Portsmouth</label>
-        <input id="ns_facewall__input--hometown-portsmouth" class="ns_facewall__input ns_facewall__input--hometown-portsmouth" value="hometown-portsmouth" type="checkbox" />
-    </div>
-    <% if (jihadiType === 'dead') { %>
-    <div>
-        <label for="ns_facewall__input--hometown-west-yorkshire">West Yorkshire</label>
-        <input id="ns_facewall__input--hometown-west-yorkshire" class="ns_facewall__input ns_facewall__input--hometown-west-yorkshire" value="hometown-west-yorkshire" type="checkbox" />
-    </div>
-    <% } %>
     <% if (jihadiType === 'alive') { %>
-        <div>
-            <label for="ns_facewall__input--hometown-liverpool">Liverpool</label>
-            <input id="ns_facewall__input--hometown-liverpool" class="ns_facewall__input ns_facewall__input--hometown-liverpool" value="hometown-liverpool" type="checkbox" />
-        </div>
-        <div>
-            <label for="ns_facewall__input--hometown-leicester">Leicester</label>
-            <input id="ns_facewall__input--hometown-leicester" class="ns_facewall__input ns_facewall__input--hometown-leicester" value="hometown-leicester" type="checkbox" />
-        </div>
         <div>
             <label for="ns_facewall__input--hometown-middlesbrough">Middlesbrough</label>
             <input id="ns_facewall__input--hometown-middlesbrough" class="ns_facewall__input ns_facewall__input--hometown-middlesbrough" value="hometown-middlesbrough" type="checkbox" />
         </div>
+        <div>
+            <label for="ns_facewall__input--hometown-nottingham">Nottingham</label>
+            <input id="ns_facewall__input--hometown-nottingham" class="ns_facewall__input ns_facewall__input--hometown-nottingham" value="hometown-nottingham" type="checkbox" />
+        </div>
+    <% } %>
+    <% if (jihadiType === 'dead') { %>
+    <div>
+        <label for="ns_facewall__input--hometown-portsmouth">Portsmouth</label>
+        <input id="ns_facewall__input--hometown-portsmouth" class="ns_facewall__input ns_facewall__input--hometown-portsmouth" value="hometown-portsmouth" type="checkbox" />
+    </div>
+    <div>
+        <label for="ns_facewall__input--hometown-west-yorkshire">West Yorkshire</label>
+        <input id="ns_facewall__input--hometown-west-yorkshire" class="ns_facewall__input ns_facewall__input--hometown-west-yorkshire" value="hometown-west-yorkshire" type="checkbox" />
+    </div>
     <% } %>
     <% if (jihadiType === 'convicted') { %>
     <div>
