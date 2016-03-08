@@ -14,7 +14,7 @@
     to{-ms-transform:rotate(360deg);}
 }
 .bbc-news-visual-journalism-loading-spinner {
-    display: block;
+    display: none;
     margin: 10px auto;
     width: 33px;
     height: 33px;
