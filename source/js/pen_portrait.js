@@ -99,7 +99,7 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
         },
 
         isMobileView: function () {
-            return news.$(window).width() <= 500;
+            return news.$(window).width() <= options.mobileMaxWidth;
         },
 
         calcPortraitPos: function (myScrollTop) {
