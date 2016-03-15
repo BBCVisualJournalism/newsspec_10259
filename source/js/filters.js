@@ -21,12 +21,15 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
         },
 
         showFilter: function (activeFilterNode) {
-            var i;
+            var i,
+                activeFilterName = activeFilterNode.attr('href');
+
             activeFilterNode.addClass(options.filters.tabActiveClassName)
                 .siblings()
                 .removeClass(options.filters.tabActiveClassName);
 
-            this.setActiveFilter(activeFilterNode.attr('href'));
+            this.setActiveFilter(activeFilterName);
+            news.pubsub.emit('istats', ['tab-' + activeFilterName, 'newsspec-interaction', true]);
 
             news.pubsub.emit(options.facewall.hideFace);
 
@@ -60,6 +63,8 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             }
             this.updateCounter();
             this.displayFirstProfile();
+
+            news.pubsub.emit('istats', ['filter-' + filterValue, 'newsspec-interaction', true]);
         },
 
         addToFilterList: function (filterValue) {

@@ -87,6 +87,7 @@ define(['lib/news_special/bootstrap', 'filters', 'options', 'pen_portrait', 'too
                 ev.preventDefault();
                 
                 news.pubsub.emit(options.facewall.displayPenPortrait, [news.$(this)]);
+                news.pubsub.emit('istats', ['portrait-clicked', 'newsspec-interaction', true]);
             });
 
             if (news.$(options.facewall.penPortraitContainer).css('display') !== 'none') {

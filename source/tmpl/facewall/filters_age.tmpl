@@ -17,8 +17,10 @@
         <label for="ns_facewall__input--age-3">30+</label>
         <input id="ns_facewall__input--age-3" class="ns_facewall__input ns_facewall__input--age-30" value="age-30" type="checkbox" />
     </div>
+    <% if (jihadiType !== 'convicted') { %>
     <div>
         <label for="ns_facewall__input--age-unknown">Unknown</label>
         <input id="ns_facewall__input--age-unknown" class="ns_facewall__input ns_facewall__input--age-unknown" value="age-unknown" type="checkbox" />
     </div>
+    <% } %>
 </fieldset>
