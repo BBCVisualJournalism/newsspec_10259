@@ -1,4 +1,5 @@
 define({
+    mobileMaxWidth: 500,
     filters: {
         toggleTabFilter: 'toggle:filter',
         tabs: '.ns_filter__toggle',

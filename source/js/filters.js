@@ -16,13 +16,20 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             this.setupFilterCounter();
         },
 
+        isMobileView: function () {
+            return news.$(window).width() <= options.mobileMaxWidth;
+        },
+
         showFilter: function (activeFilterNode) {
-            var i;
+            var i,
+                activeFilterName = activeFilterNode.attr('href');
+
             activeFilterNode.addClass(options.filters.tabActiveClassName)
                 .siblings()
                 .removeClass(options.filters.tabActiveClassName);
 
-            this.setActiveFilter(activeFilterNode.attr('href'));
+            this.setActiveFilter(activeFilterName);
+            news.pubsub.emit('istats', ['tab-' + activeFilterName, 'newsspec-interaction', true]);
 
             news.pubsub.emit(options.facewall.hideFace);
 
@@ -55,6 +62,9 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
                 this.removeFromFilterList(filterValue);
             }
             this.updateCounter();
+            this.displayFirstProfile();
+
+            news.pubsub.emit('istats', ['filter-' + filterValue, 'newsspec-interaction', true]);
         },
 
         addToFilterList: function (filterValue) {
@@ -80,6 +90,12 @@ define(['lib/news_special/bootstrap', 'options'], function (news, options) {
             this._totalProfiles = totalProfilesArray.length - 1;
             news.$('.ns_facewall__indicator').prepend(totalProfilesArray.join('<li class="ns__count_item ns__count_item--active"></li>'));
             news.$(options.facewall.introCount).text(this._totalProfiles);
+        },
+
+        displayFirstProfile: function () {
+            if (this.isMobileView()) { return; }
+            var activeProfiles = news.$('.' + options.facewall.faceFilterClass);
+            news.pubsub.emit(options.facewall.displayPenPortrait, [news.$(activeProfiles[0].firstChild)]);
         },
 
         updateCounter: function () {
