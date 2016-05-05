@@ -1,8 +1,8 @@
 $debug: false;
-$which-env: local;
+$which-env: live;
 $scaffold-lite: false;
 $project_number: 10259;
 $year: 2015;
-$image-widths: (320, 640, 1024);
+$image-widths: 320,640,1024;
 $services-default: english;
 $services-others: SHARED_CONFIG_PLACEHOLDER;
