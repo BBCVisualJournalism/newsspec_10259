@@ -6,7 +6,7 @@
 		} else if (jihadiType === 'convicted') {
 			introText = 'Those convicted for offences relating to Syria or Iraq ';
 		} else if (jihadiType === 'dead') {
-			introText = 'Jihadists believed to have died fighting in Syria or Iraq ';
+			introText = 'Jihadists believed to have died in Syria or Iraq ';
 		}
 	%>
 
@@ -62,9 +62,9 @@
 		<% } %>
 	</ul>
 
-	
+
 	<div class="ns_facewall__panel ns__profile--enabled">
-		
+
 		<ul class="ns_facewall__portrait-wrapper"><%= include('facewall/portraits_' + jihadiType + '.tmpl') %></ul>
     </div>
 	<div class="ns_clearfix"></div>
