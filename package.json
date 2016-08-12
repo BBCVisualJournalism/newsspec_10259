@@ -5,7 +5,7 @@
     "url": "http://github.com/BBCVisualJournalism/newsspec_10259"
   },
   "description":    "Project Blackwood",
-  "version":        "6.6.351",
+  "version":        "6.6.353",
   "devDependencies": {
     "casperjs":                         "1.1.0-beta3",
     "grunt":                            "~0.4.0",
