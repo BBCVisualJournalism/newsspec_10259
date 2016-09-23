@@ -1,7 +1,11 @@
 @import "news_special/defaults";
 @import "app";
 
+<<<<<<< HEAD
 $imageVersions: 55;
+=======
+$imageVersions: 54;
+>>>>>>> 2690e8d7b5ef85c45852a840df45fb1c895eb03a
 $totalProfiles: 266;
 
 $anchor-active: #f00;
@@ -53,6 +57,3 @@ $graph-multiplier-group-4: 1.76%;
 @import "panel";
 @import "filters";
 @import "facewall";
-
-
-
