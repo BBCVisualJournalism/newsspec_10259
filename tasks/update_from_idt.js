@@ -216,7 +216,7 @@ module.exports = function (grunt) {
             grunt.log.writeln('Got here');
             var request = {
                 host: 'www.bbc.co.uk',
-                path: '/indepthtoolkit/data-sets/jhadi-facewall/json'
+                path: '/indepthtoolkit/data-sets/jhadi_facewall/json-with-props'
             };
             grunt.log.writeln(JSON.stringify(getHttpOptions(request)));
             http.request(getHttpOptions(request), function (res) {
