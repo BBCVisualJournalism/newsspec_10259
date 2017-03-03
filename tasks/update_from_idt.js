@@ -166,8 +166,6 @@ module.exports = function (grunt) {
             } else {
                 jihad.age = 'age-unknown';
             }
-
-
             return jihad;
         }
 
